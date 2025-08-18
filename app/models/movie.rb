@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
+  validates :hashed_id, :title, presence: true
+
   def create_movies
-    movies = ChatbotService.new.call
-    puts movies
+    ChatbotService.new.call
   end
 end
