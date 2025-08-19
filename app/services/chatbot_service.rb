@@ -9,8 +9,10 @@ class ChatbotService
     req["Content-Type"] = "application/json"
     req["Authorization"] = "Bearer justatest"
 
-    movies = get_movies(http, req, "cry")
-    movies.concat(get_movies(http, req, "laugh"))
+    hash = movie_to_hasharray(get_movies(http, req, "cry"), :sad)
+    # hash.push(movie_to_hasharray(get_movies(http, req, "laugh")))
+
+    # movie_to_hasharray(JSON.parse(movies))
   end
 
   private
@@ -33,5 +35,15 @@ class ChatbotService
       "messages": [ { "role": "user", "content": content } ]
     }
     data.to_json
+  end
+
+  def movie_to_hasharray(movies, category)
+    movies = JSON.parse(movies)
+    movies_hasharray = []
+    movies.each do |movie|
+      movie_hash = { hashed_id: movie["title"].hash, title: movie["title"], category: category }
+      movies_hasharray.push(movie_hash)
+    end
+    movies_hasharray
   end
 end
