@@ -3,6 +3,8 @@ namespace :call_movie do
   task call: :environment do
     movie = Movie.new
     movies = movie.create_movies
-    puts movies
+    movies.each do |movie|
+      Movie.create(hashed_id: movie[:hashed_id], title: movie[:title], category: movie[:category])
+    end
   end
 end

@@ -9,7 +9,7 @@ class ChatbotService
     req["Content-Type"] = "application/json"
     req["Authorization"] = "Bearer justatest"
 
-    hash = movie_to_hasharray(get_movies(http, req, "cry"), :sad)
+    movie_to_hasharray(get_movies(http, req, "cry"), :sad)
     # hash.push(movie_to_hasharray(get_movies(http, req, "laugh")))
 
     # movie_to_hasharray(JSON.parse(movies))
